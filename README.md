@@ -13,16 +13,20 @@ And the prerequisites are as follows:
 - Python 3
 - CPU or NVIDIA GPU + CUDA CuDNN
 
-I personally use miniconda to manage my environment. You can create a new environment with the following command to use the same environment with mine, which are tested to run normally:
+I personally use miniconda to manage my environment. You can create a new environment with the following command:
 
 ```bash
-conda env create -n yourenvname -f requirements.txt
+conda env create -n yourenvname
 ```
-*Replace `yourenvname` with the name of your environment.*
 
 To activate the environment, use the following command:
 ```bash
 conda activate yourenvname
+```
+
+Install the required packages:
+```bash
+pip install -r requirements.txt
 ```
 
 ## Dataset
