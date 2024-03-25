@@ -8,7 +8,12 @@ According to the original repo, the following dependencies are required:
 - visdom>=0.1.8.8
 - wandb
 
-I personally use miniconda to manage my environment. You can create a new environment with the following command:
+And the prerequisites are as follows:
+- Linux or macOS
+- Python 3
+- CPU or NVIDIA GPU + CUDA CuDNN
+
+I personally use miniconda to manage my environment. You can create a new environment with the following command to use the same environment with mine, which are tested to run normally:
 
 ```bash
 conda env create -n yourenvname -f requirements.txt
