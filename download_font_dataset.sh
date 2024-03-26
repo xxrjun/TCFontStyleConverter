@@ -7,8 +7,7 @@ check_status() {
 }
 
 # 調用Python腳本並評估其輸出以設置環境變量
-eval $(python load_env.py)
-
+eval $(python ./datasets/load_env.py)
 
 # 使用環境變量中的ACCESS_TOKEN來下載datasets
 echo "Cloning the dataset repository..."
@@ -22,8 +21,8 @@ if [ ! -d "./FontHandWriting_Dataset_CycleGAN" ]; then
 fi
 
 # 移動數據集目錄到正確的位置
-# echo "Moving dataset directory..."
-# mv ./FontHandWriting_Dataset_CycleGAN ./datasets/FontHandWriting_Dataset_CycleGAN
-# check_status "Failed to move the dataset directory."
+echo "Moving dataset directory..."
+mv ./FontHandWriting_Dataset_CycleGAN ./datasets/FontHandWriting_Dataset_CycleGAN
+check_status "Failed to move the dataset directory."
 
 echo "Dataset cloning and moving completed successfully."
