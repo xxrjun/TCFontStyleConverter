@@ -1,10 +1,10 @@
 .DS_Store
 debug*
-datasets/
 checkpoints/
 results/
 build/
 dist/
+datasets/**/
 *.png
 torch.egg-info/
 */**/__pycache__
