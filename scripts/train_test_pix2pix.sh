@@ -8,7 +8,7 @@ check_status() {
 
 # 進行模型訓練
 echo "Starting model training..."
-python ../train.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix --name fontA2B --model pix2pix --direction AtoB --input_nc 1 --output_nc 1 --display_id 0 --gpu_ids 0
+python ../train.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix --name fontA2B --model pix2pix --direction AtoB --dataset_mode unaligned --input_nc 1 --output_nc 1 --display_id 0 --gpu_ids 0
 check_status "Model training failed."
 
 # 檢查模型檔案是否存在，如果不存在則退出
@@ -19,7 +19,7 @@ fi
 
 # 進行模型測試
 echo "Starting model testing..."
-python ../test.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix/testA --name fontA2B --model pix2pix --input_nc 1 --output_nc 1 --no_dropout --direction AtoB
+python ../test.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix/testA --name fontA2B --model pix2pix --dataset_mode unaligned --input_nc 1 --output_nc 1 --no_dropout --direction AtoB
 check_status "Model testing failed."
 
 echo "Training and testing completed successfully."
