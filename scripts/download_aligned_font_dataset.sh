@@ -6,28 +6,23 @@ check_status() {
   fi
 }
 
+# 調用Python腳本並評估其輸出以設置環境變量
+eval $(python ../util/load_env.py)
 
-# 下載datasets
-echo "Downloading the dataset..."
-gdown --id 18myYEqh3jXodfWPqiR_fB5qSNuwQbKeJ --output "../datasets/FontHandWriting_Dataset_pix2pix.zip"
-check_status "Failed to download the dataset repository."
-
-echo "Unzipping the dataset..."
-unzip -O utf-8 -I utf-8 -q "../datasets/FontHandWriting_Dataset_pix2pix.zip" -d "../datasets/"
-check_status "Failed to unzip the dataset."
-
-rm "../datasets/FontHandWriting_Dataset_pix2pix.zip"
+# 使用環境變量中的ACCESS_TOKEN來下載datasets
+echo "Cloning the dataset repository..."
+git clone https://YCHM0304:${ACCESS_TOKEN}@github.com/YCHM0304/FontHandWriting_Dataset_pix2pix.git
+check_status "Failed to clone the dataset repository."
 
 # 檢查數據集目錄是否存在，如果不存在則退出
-if [ ! -d "../datasets/FontHandWriting_Dataset_CycleGAN" ]; then
+if [ ! -d "./FontHandWriting_Dataset_pix2pix" ]; then
   echo "Dataset directory not found."
   exit 1
-else
-  echo "Dataset downloading and unzipping completed successfully."
 fi
 
+# 移動數據集目錄到正確的位置
+echo "Moving dataset directory..."
+mv ./FontHandWriting_Dataset_pix2pix ../datasets/FontHandWriting_Dataset_pix2pix
+check_status "Failed to move the dataset directory."
 
-
-# 解壓縮dataset
-
-echo "Dataset downloading and unzipping completed successfully."
+echo "Dataset cloning and moving completed successfully."
