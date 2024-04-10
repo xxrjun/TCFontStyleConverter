@@ -13,7 +13,7 @@ gdown --id 18myYEqh3jXodfWPqiR_fB5qSNuwQbKeJ --output "../datasets/FontHandWriti
 check_status "Failed to download the dataset repository."
 
 echo "Unzipping the dataset..."
-unzip "../datasets/FontHandWriting_Dataset_pix2pix.zip" -d "../datasets/"
+unzip -q "../datasets/FontHandWriting_Dataset_pix2pix.zip" -d "../datasets/"
 check_status "Failed to unzip the dataset."
 
 rm "../datasets/FontHandWriting_Dataset_pix2pix.zip"
