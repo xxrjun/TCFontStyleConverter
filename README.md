@@ -13,6 +13,10 @@ And the prerequisites are as follows:
 - Python 3
 - CPU or NVIDIA GPU + CUDA CuDNN
 
+To use the required tools for downloading the dataset, please make sure you have the following tools installed:
+- gdown
+- pyenv
+
 I personally use miniconda to manage my environment. You can create a new environment with the following command:
 
 ```bash
@@ -30,21 +34,37 @@ pip install -r requirements.txt
 ```
 
 ## Dataset
-To use the provided dataset:
-1. Put `.env` file in the directory `datasets` of the project.
-2. Run the following shell script:
+First, download `.env` which has the access token for dataset by running the following command:
 ```bash
-./train_test.sh
+!gdown --id xxxxxxxxxxxxxxxxxxxxxxx(Please ask author for the access token)
 ```
 
-The dataset will be downloaded.
-
-## Testing
-According to the original repo, if the parameter `--model` is set to `test` and you only test one direction, the file name of the saved model `latest_net_G_A.pth` should be manually changed to `latest_net_G.pth`.
-
-Run the following shell script to change the file name of the saved model:
-```python
-os.rename("./checkpoints/*name/latest_net_G_A.pth", "./checkpoints/*name/latest_net_G.pth")
+Then, move to the directory `scripts` by running the following command:
+```bash
+cd ./scripts
 ```
-*Replace `*name` with the value of `--name` you set earlier in the training process.*
+### Paired Dataset for pix2pix
+Run the following shell script:
+```bash
+./download_aligned_font_dataset.sh
+```
+
+### Unpaired Dataset for cycleGAN
+Run the following shell script:
+```bash
+./download_font_dataset.sh
+```
+
+## Training and Testing
+### Train and test Pix2pix
+Run the following shell script:
+```bash
+./train_test_pix2pix.sh
+```
+
+### Train and test CycleGAN
+Run the following shell script:
+```bash
+./train_test_cycleGAN.sh
+```
 
