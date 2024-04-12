@@ -21,4 +21,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
             github_token: ${{ secrets.GH_TOKEN }}
-            publish_dir: ./scripts/checkpoints/fontA2B/web/index.html
+            publish_dir: ./scripts/checkpoints/fontA2B/web
