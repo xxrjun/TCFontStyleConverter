@@ -1,0 +1,5 @@
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v4
+  with:
+    github_token: ${{ secrets.GH_TOKEN }}
+    publish_dir: ./scripts/checkpoints/fontA2B/web/index.html
