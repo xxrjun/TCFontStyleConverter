@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TCFontTransfer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #2b2b2b;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        color: #4caf50;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 15px;
+      }
+      a {
+        display: block;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+      }
+      a:hover {
+        background-color: #45a049;
+      }
+      details {
+        margin-bottom: 20px;
+      }
+      summary {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+      }
+      summary:hover {
+        background-color: #45a049;
+      }
+      pre {
+        background-color: #1e1e1e;
+        padding: 10px;
+        border-radius: 3px;
+        overflow-x: auto;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.4;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Tech Links</h1>
+      <ul>
+        <li>
+          <a href="./results/fontA2B/test_latest/index.html"
+            >Font A2B Test Results</a
+          >
+        </li>
+        <li>
+          <a href="./checkpoints/fontA2B/web/index.html"
+            >Font A2B Web Checkpoints</a
+          >
+        </li>
+      </ul>
+
+      <details>
+        <summary>Test Options</summary>
+        <pre id="test_opt_content"></pre>
+      </details>
+
+      <details>
+        <summary>Train Options</summary>
+        <pre id="train_opt_content"></pre>
+      </details>
+
+      <details>
+        <summary>Loss Log</summary>
+        <pre id="loss_log_content"></pre>
+      </details>
+    </div>
+  </body>
+</html>
+
+<script>
+  fetch("./checkpoints/fontA2B/test_opt.txt")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("test_opt_content").textContent = data;
+    });
+
+  fetch("./checkpoints/fontA2B/train_opt.txt")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("train_opt_content").textContent = data;
+    });
+
+  fetch("./checkpoints/fontA2B/loss_log.txt")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("loss_log_content").textContent = data;
+    });
+</script>

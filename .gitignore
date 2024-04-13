@@ -1,7 +1,7 @@
 .DS_Store
 debug*
-scripts/checkpoints/*/*.pth
-results/
+checkpoints/*/*.pth
+# results/
 build/
 dist/
 datasets/**/
