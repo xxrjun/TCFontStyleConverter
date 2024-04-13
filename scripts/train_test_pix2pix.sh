@@ -13,6 +13,7 @@ python ../train.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix \
                   --model pix2pix \
                   --direction AtoB \
                   --dataset_mode unaligned \
+                  --serial_batches \
                   --no_flip \
                   --input_nc 1 \
                   --output_nc 1 \
@@ -33,6 +34,7 @@ python ../test.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix \
                   --name fontA2B \
                   --model pix2pix \
                   --dataset_mode unaligned \
+                  --serial_batches \
                   --input_nc 1 \
                   --output_nc 1 \
                   --no_dropout \
