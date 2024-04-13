@@ -24,7 +24,7 @@ check_status "Failed to rename the model file."
 
 # 進行模型測試
 echo "Starting model testing..."
-python ../test.py --dataroot ../datasets/FontHandWriting_Dataset_CycleGAN/testA --name fontA2B --model test --input_nc 1 --output_nc 1 --no_dropout
+python ../test.py --dataroot ../datasets/FontHandWriting_Dataset_CycleGAN --name fontA2B --model test --input_nc 1 --output_nc 1 --no_dropout
 check_status "Model testing failed."
 
 echo "Training and testing completed successfully."
