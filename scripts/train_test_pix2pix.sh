@@ -13,6 +13,7 @@ python ../train.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix \
                   --model pix2pix \
                   --direction AtoB \
                   --dataset_mode unaligned \
+                  --no_flip \
                   --input_nc 1 \
                   --output_nc 1 \
                   --display_id 0 \
@@ -35,6 +36,7 @@ python ../test.py --dataroot ../datasets/FontHandWriting_Dataset_pix2pix \
                   --input_nc 1 \
                   --output_nc 1 \
                   --no_dropout \
+                  --no_flip \
                   --direction AtoB \
                   --checkpoints_dir ../checkpoints\
                   --results_dir ../results
