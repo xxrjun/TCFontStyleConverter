@@ -9,18 +9,18 @@ check_status() {
 name=fontA2B
 model=cycle_gan
 
-# # 進行模型訓練
-# echo "Starting model training..."
-# python ../train.py --dataroot ../datasets/FontHandWriting_Dataset_CycleGAN \
-#                   --name $name \
-#                   --model $model \
-#                   --input_nc 1 \
-#                   --output_nc 1 \
-#                   --display_id 0 \
-#                   --gpu_ids 0 \
-#                   --no_flip \
-#                   --checkpoints_dir ../checkpoints/$model
-# check_status "Model training failed."
+# 進行模型訓練
+echo "Starting model training..."
+python ../train.py --dataroot ../datasets/FontHandWriting_Dataset_CycleGAN \
+                  --name $name \
+                  --model $model \
+                  --input_nc 1 \
+                  --output_nc 1 \
+                  --display_id 0 \
+                  --gpu_ids 0 \
+                  --no_flip \
+                  --checkpoints_dir ../checkpoints/$model
+check_status "Model training failed."
 
 # 檢查模型檔案是否存在，如果不存在則退出
 if [ ! -f "../checkpoints/$model/$name/latest_net_G_A.pth" ]; then
@@ -28,10 +28,6 @@ if [ ! -f "../checkpoints/$model/$name/latest_net_G_A.pth" ]; then
   exit 1
 fi
 
-# 重命名模型檔案
-# echo "Renaming model file..."
-# mv "../checkpoints/$model/$name/latest_net_G_A.pth" "../checkpoints/$model/$name/latest_net_G_A.pth"
-# check_status "Failed to rename the model file."
 
 # 進行模型測試
 echo "Starting model testing..."
