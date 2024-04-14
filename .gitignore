@@ -1,6 +1,6 @@
 .DS_Store
 debug*
-checkpoints/*/*.pth
+checkpoints/**/*.pth
 # results/
 build/
 dist/
