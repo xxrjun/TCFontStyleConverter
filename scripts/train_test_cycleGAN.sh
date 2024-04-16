@@ -18,7 +18,6 @@ python ../train.py --dataroot ../datasets/FontHandWriting_Dataset_CycleGAN \
                   --output_nc 1 \
                   --display_id 0 \
                   --gpu_ids 0 \
-                  --no_flip \
                   --checkpoints_dir ../checkpoints/$model
 check_status "Model training failed."
 

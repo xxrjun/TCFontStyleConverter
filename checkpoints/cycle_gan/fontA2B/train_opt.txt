@@ -41,7 +41,7 @@
                      netG: resnet_9blocks                
                       ngf: 64                            
                no_dropout: True                          
-                  no_flip: True                          	[default: False]
+                  no_flip: False                         
                   no_html: False                         
                      norm: instance                      
               num_threads: 4                             
