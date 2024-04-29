@@ -7,7 +7,7 @@ check_status() {
 }
 
 # 調用Python腳本並評估其輸出以設置環境變量
-eval $(python ../util/load_env.py)
+eval $(python ./util/load_env.py)
 
 # 使用環境變量中的ACCESS_TOKEN來下載datasets
 echo "Cloning the dataset repository..."
