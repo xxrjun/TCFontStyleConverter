@@ -73,22 +73,17 @@ Or you can download the dataset manually by running the following command:
 gdown --id <access_token>
 ```
 
-Then, move to the directory `scripts` by running the following command:
-
-```bash
-cd scripts
-```
 
 Run the following shell script to download **Paired Dataset for pix2pix**:
 
 ```bash
-./download_aligned_font_dataset.sh
+./scripts/download_aligned_font_dataset.sh
 ```
 
 Run the following shell script to download **Unpaired Dataset for cycleGAN**:
 
 ```bash
-./download_font_dataset.sh
+./scripts/download_font_dataset.sh
 ```
 ### Zi2Zi
 Download tons of fonts as you please and put **one** source font in `./datasets/charset/src` and **put any number less than 40 of** target fonts in `./datasets/charset/dst`. The fonts should be in `.ttf` format.
@@ -105,7 +100,7 @@ datasets
 Then, run the following command to convert the source font and target fonts to images:
 
 ```bash
-bash run_font2font.sh sample_number src_font dst_font label
+bash ./scripts/run_font2font.sh sample_number src_font dst_font label
 ```
 - `sample_number`: the number of samples to generate
 - `src_font`: the name of the source font
@@ -115,9 +110,9 @@ bash run_font2font.sh sample_number src_font dst_font label
 For example, you have `a.ttf` for the source font and `b.ttf`, `c.ttf`, `d.ttf` for the target fonts, and you want to generate 1000 samples for each target font, you can run the following command:
 
 ```bash
-bash run_font2font.sh 1000 b 0
-bash run_font2font.sh 1000 c 1
-bash run_font2font.sh 1000 d 2
+bash ./scripts/run_font2font.sh 1000 b 0
+bash ./scripts/run_font2font.sh 1000 c 1
+bash ./scripts/run_font2font.sh 1000 d 2
 ```
 **Suggestion**: Use the same source font, and different target font will give you better performance.
 
@@ -130,7 +125,7 @@ bash run_font2font.sh 1000 d 2
 After running all the commands, run the following command to generate the dataset:
 
 ```bash
-bash run_package.sh split_ratio
+bash ./scripts/run_package.sh split_ratio
 ```
 `split_ratio`: the ratio of the training set to the validation set
 
@@ -148,13 +143,13 @@ data
 Run the following shell script to **train and test Pix2pix**:
 
 ```bash
-./train_test_pix2pix.sh
+./scripts/train_test_pix2pix.sh
 ```
 
 Run the following shell script to **train and test CycleGAN**:
 
 ```bash
-./train_test_cycleGAN.sh
+./scripts/train_test_cycleGAN.sh
 ```
 ### Zi2zi
 Before training the model, you need to open the `run_train_zi2zi.sh` file and modify the following parameters:
@@ -166,7 +161,7 @@ Before training the model, you need to open the `run_train_zi2zi.sh` file and mo
 Then, run the following command to train the model:
 
 ```bash
-bash run_train_zi2zi.sh
+bash ./scripts/run_train_zi2zi.sh
 ```
 
 *During the training process, the generated images will be saved with the following folder structure. Additionally, only the first image of each label from every training epoch will be saved.*
@@ -199,12 +194,12 @@ experiment
 Zi2zi has two ways to test the model. The first way is to test the model with the validation set. Run the following command to test the model with the validation set:
 
 ```bash
-bash run_test_zi2zi.sh
+bash ./scripts/run_test_zi2zi.sh
 ```
 The second way is to test the model with the source font that you can type any Chinese characters you want to convert to the target font. Run the following command to test the model with the source font:
 
 ```bash
-bash run_test_zi2zi.sh src_txt resume label
+bash ./scripts/run_test_zi2zi.sh src_txt resume label
 ```
 - `src_txt`: type any Chinese characters you want to convert to the target font
 - `resume`: which step of checkpoint to generate the image
