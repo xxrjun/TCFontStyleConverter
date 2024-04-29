@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TCFontTransfer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #2b2b2b;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        color: #4caf50;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 15px;
+      }
+      a {
+        display: block;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+      }
+      a:hover {
+        background-color: #45a049;
+      }
+      details {
+        margin-bottom: 20px;
+      }
+      summary {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+      }
+      summary:hover {
+        background-color: #45a049;
+      }
+      pre {
+        background-color: #1e1e1e;
+        padding: 10px;
+        border-radius: 3px;
+        overflow-x: auto;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.4;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .model-section {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>TCFontTransfer</h1>
+
+      <div id="pix2pix_section" class="model-section">
+        <h2>Pix2Pix Model</h2>
+        <ul>
+          <li>
+            <a id="pix2pix_test_results_link" href="#" target="_blank"
+              >Pix2Pix Test Results</a
+            >
+          </li>
+          <li>
+            <a id="pix2pix_web_checkpoints_link" href="#" target="_blank"
+              >Pix2Pix Web Checkpoints</a
+            >
+          </li>
+        </ul>
+        <details>
+          <summary>Pix2Pix Test Options</summary>
+          <pre id="pix2pix_test_opt_content"></pre>
+        </details>
+        <details>
+          <summary>Pix2Pix Train Options</summary>
+          <pre id="pix2pix_train_opt_content"></pre>
+        </details>
+        <details>
+          <summary>Pix2Pix Loss Log</summary>
+          <pre id="pix2pix_loss_log_content"></pre>
+        </details>
+      </div>
+
+      <div id="cycle_gan_section" class="model-section">
+        <h2>CycleGAN Model</h2>
+        <ul>
+          <li>
+            <a id="cycle_gan_test_results_link" href="#" target="_blank"
+              >CycleGAN Test Results</a
+            >
+          </li>
+          <li>
+            <a id="cycle_gan_web_checkpoints_link" href="#" target="_blank"
+              >CycleGAN Web Checkpoints</a
+            >
+          </li>
+        </ul>
+        <details>
+          <summary>CycleGAN Test Options</summary>
+          <pre id="cycle_gan_test_opt_content"></pre>
+        </details>
+        <details>
+          <summary>CycleGAN Train Options</summary>
+          <pre id="cycle_gan_train_opt_content"></pre>
+        </details>
+        <details>
+          <summary>CycleGAN Loss Log</summary>
+          <pre id="cycle_gan_loss_log_content"></pre>
+        </details>
+      </div>
+    </div>
+
+    <script>
+      const models = ["pix2pix", "cycle_gan"];
+
+      function checkDirectoryExists(directory) {
+        return fetch(directory, { method: "HEAD" })
+          .then((response) => response.ok)
+          .catch(() => false);
+      }
+
+      async function updateLinks() {
+        for (const model of models) {
+          const testResultsLink = document.getElementById(
+            `${model}_test_results_link`
+          );
+          const webCheckpointsLink = document.getElementById(
+            `${model}_web_checkpoints_link`
+          );
+          const modelSection = document.getElementById(`${model}_section`);
+
+          const testResultsDir = `./results/${model}/fontA2B/test_latest/index.html`;
+          const webCheckpointsDir = `./checkpoints/${model}/fontA2B/web/index.html`;
+
+          if (await checkDirectoryExists(testResultsDir)) {
+            testResultsLink.href = testResultsDir;
+          } else {
+            modelSection.style.display = "none";
+          }
+
+          if (await checkDirectoryExists(webCheckpointsDir)) {
+            webCheckpointsLink.href = webCheckpointsDir;
+          } else {
+            webCheckpointsLink.style.display = "none";
+          }
+        }
+      }
+
+      async function fetchOptionsAndLogs() {
+        for (const model of models) {
+          const testOptPath = `./checkpoints/${model}/fontA2B/test_opt.txt`;
+          const trainOptPath = `./checkpoints/${model}/fontA2B/train_opt.txt`;
+          const lossLogPath = `./checkpoints/${model}/fontA2B/loss_log.txt`;
+
+          const testOptContent = document.getElementById(
+            `${model}_test_opt_content`
+          );
+          const trainOptContent = document.getElementById(
+            `${model}_train_opt_content`
+          );
+          const lossLogContent = document.getElementById(
+            `${model}_loss_log_content`
+          );
+
+          try {
+            const testOptResponse = await fetch(testOptPath);
+            if (testOptResponse.ok) {
+              const testOptData = await testOptResponse.text();
+              testOptContent.textContent = testOptData;
+            }
+          } catch (error) {
+            testOptContent.textContent = "Test options not available.";
+          }
+
+          try {
+            const trainOptResponse = await fetch(trainOptPath);
+            if (trainOptResponse.ok) {
+              const trainOptData = await trainOptResponse.text();
+              trainOptContent.textContent = trainOptData;
+            }
+          } catch (error) {
+            trainOptContent.textContent = "Train options not available.";
+          }
+
+          try {
+            const lossLogResponse = await fetch(lossLogPath);
+            if (lossLogResponse.ok) {
+              const lossLogData = await lossLogResponse.text();
+              lossLogContent.textContent = lossLogData;
+            }
+          } catch (error) {
+            lossLogContent.textContent = "Loss log not available.";
+          }
+        }
+      }
+
+      updateLinks();
+      fetchOptionsAndLogs();
+    </script>
+  </body>
+</html>
