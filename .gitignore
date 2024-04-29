@@ -5,6 +5,8 @@ checkpoints/**/*.pth
 build/
 dist/
 datasets/**/
+!datasets/charset/
+!datasets/charset/**
 examples/
 *experiment*/
 torch.egg-info/
