@@ -104,9 +104,10 @@ charset
 Then, run the following command to convert the source font and target fonts to images:
 
 ```bash
-bash run_font2font.sh sample_number dst_font label
+bash run_font2font.sh sample_number src_font dst_font label
 ```
 - `sample_number`: the number of samples to generate
+- `src_font`: the name of the source font
 - `dst_font`: the name of the target font
 - `label`: the label of the target font
 

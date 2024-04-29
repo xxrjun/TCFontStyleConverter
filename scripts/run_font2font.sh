@@ -1,8 +1,9 @@
 sample_count=$1
-dst_font=$2
-label=$3
+src_font=$2
+dst_font=$3
+label=$4
 
-python font2img.py --src_font ./charset/src/*.ttf \
+python font2img.py --src_font ./charset/src/{$src_font}.ttf \
                    --dst_font ./charset/dst/{$dst_font}.ttf \
                    --charset CN \
                    --sample_count $sample_count \
