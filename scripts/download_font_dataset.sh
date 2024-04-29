@@ -22,7 +22,7 @@ fi
 
 # 移動數據集目錄到正確的位置
 echo "Moving dataset directory..."
-mv ./FontHandWriting_Dataset_CycleGAN ../datasets/FontHandWriting_Dataset_CycleGAN
+mv ./FontHandWriting_Dataset_CycleGAN ./datasets/FontHandWriting_Dataset_CycleGAN
 check_status "Failed to move the dataset directory."
 
 echo "Dataset cloning and moving completed successfully."
