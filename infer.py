@@ -1,6 +1,6 @@
 from data import DatasetFromObj
 from torch.utils.data import DataLoader, TensorDataset
-from modelsZi2zi import Zi2ZiModel
+from models.zi2zi import Zi2ZiModel
 import os
 import argparse
 import torch
@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 import torchvision.transforms as transforms
 from torchvision.utils import save_image, make_grid
 import time
-from modelsZi2zi.model import chk_mkdir
+from models.zi2zi.model import chk_mkdir
 from util.htmlZi2zi import HTML
 
 # writer_dict = {
