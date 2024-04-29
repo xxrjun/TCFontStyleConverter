@@ -51,8 +51,8 @@ parser.add_argument('--canvas_size', type=int, default=256)
 parser.add_argument('--char_size', type=int, default=256)
 parser.add_argument('--run_all_label', action='store_true')
 parser.add_argument('--label', type=int, default=0)
-parser.add_argument('--src_font', type=str, default='charset/src/PMingLiU-02.ttf')
-parser.add_argument('--dst_font', type=str, default='charset/dst/DFHsiu-W3-WIN-BF-01.ttf')
+parser.add_argument('--src_font', type=str, default='datasets/charset/src/PMingLiU-02.ttf')
+parser.add_argument('--dst_font', type=str, default='datasets/charset/dst/DFHsiu-W3-WIN-BF-01.ttf')
 parser.add_argument('--type_file', type=str, default='type/宋黑类字符集.txt')
 
 

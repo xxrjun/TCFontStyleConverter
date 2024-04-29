@@ -24,7 +24,7 @@ CN_T_CHARSET = None
 JP_CHARSET = None
 KR_CHARSET = None
 
-DEFAULT_CHARSET = "./charset/cjk.json"
+DEFAULT_CHARSET = "./datasets/charset/cjk.json"
 
 
 def load_global_charset():

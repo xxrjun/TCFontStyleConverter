@@ -91,15 +91,16 @@ Run the following shell script to download **Unpaired Dataset for cycleGAN**:
 ./download_font_dataset.sh
 ```
 ### Zi2Zi
-Download tons of fonts as you please and put **one** source font in `./charset/src` and **put any number less than 40 of** target fonts in `./charset/dst`. The fonts should be in `.ttf` format.
+Download tons of fonts as you please and put **one** source font in `./datasets/charset/src` and **put any number less than 40 of** target fonts in `./datasets/charset/dst`. The fonts should be in `.ttf` format.
 ```bash
-charset
-  ├─src         (n = 1)
-  │  └─src.ttf
-  └─dst         (n <= 40)
-     ├─dst1.ttf
-     ├─dst2.ttf
-     └─dst?.ttf
+datasets
+  └─ charset
+      ├─src         (n = 1)
+      │  └─src.ttf
+      └─dst         (n <= 40)
+        ├─dst1.ttf
+        ├─dst2.ttf
+        └─dst?.ttf
 ```
 Then, run the following command to convert the source font and target fonts to images:
 
