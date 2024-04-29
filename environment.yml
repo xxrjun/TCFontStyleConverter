@@ -1,0 +1,22 @@
+name: zi2zi-env
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.11
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - cudatoolkit=11.8
+  - cudnn
+  - scipy
+  - imageio
+  - matplotlib
+  - pip:
+    - pillow
+    - opencv-python
+    - fontTools
+    - tdqm
+    - dominate

@@ -13,6 +13,7 @@ See our template dataset class 'template_dataset.py' for more details.
 import importlib
 import torch.utils.data
 from data.base_dataset import BaseDataset
+from .dataset import DatasetFromObj
 
 
 def find_dataset_using_name(dataset_name):
