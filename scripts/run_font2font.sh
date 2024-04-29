@@ -1,7 +1,9 @@
-sample_count=1000
+sample_count=$1
+dst_font=$2
+label=$3
 
-python font2img.py --src_font ./charset/src/PMingLiU-02.ttf \
-                   --dst_font ./charset/dst/DFHsiu-W3-WIN-BF-01.ttf \
+python font2img.py --src_font ./charset/src/*.ttf \
+                   --dst_font ./charset/dst/{$dst_font}.ttf \
                    --charset CN \
                    --sample_count $sample_count \
                    --sample_dir ./examples \

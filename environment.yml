@@ -1,4 +1,4 @@
-name: zi2zi-env
+name: fontConverter
 channels:
   - pytorch
   - nvidia
@@ -20,3 +20,5 @@ dependencies:
     - fontTools
     - tdqm
     - dominate
+    - wandb
+    - python-dotenv

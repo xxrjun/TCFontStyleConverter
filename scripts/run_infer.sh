@@ -4,5 +4,4 @@ python infer.py \
 --start_from 0 \
 --gpu_ids cuda:0 \
 --resume 700 \
---obj_path experiment/data/val.obj \
---batch_size 64
+--obj_path experiment/data/val.obj
