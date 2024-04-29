@@ -2,7 +2,7 @@ epoch=50
 batch_size=64
 
 
-python train_zi2zi.py \
+python trainZi2zi.py \
 --experiment_dir ./experiment \
 --gpu_ids cuda:0 \
 --epoch $epoch \

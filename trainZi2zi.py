@@ -1,7 +1,7 @@
 from data import DatasetFromObj
 from torch.utils.data import DataLoader
-from models_zi2zi import Zi2ZiModel
-from util.html_zi2zi import HTML
+from modelsZi2zi import Zi2ZiModel
+from util.htmlZi2zi import HTML
 import os
 import sys
 import argparse

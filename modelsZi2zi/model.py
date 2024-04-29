@@ -7,7 +7,7 @@ import os
 from torch.optim.lr_scheduler import StepLR
 from util.init_net import init_net
 import torchvision.utils as vutils
-from util.html_zi2zi import HTML
+from util.htmlZi2zi import HTML
 
 
 class Zi2ZiModel:

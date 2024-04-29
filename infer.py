@@ -1,6 +1,6 @@
 from data import DatasetFromObj
 from torch.utils.data import DataLoader, TensorDataset
-from models_zi2zi import Zi2ZiModel
+from modelsZi2zi import Zi2ZiModel
 import os
 import argparse
 import torch
@@ -12,8 +12,8 @@ from PIL import Image, ImageDraw, ImageFont
 import torchvision.transforms as transforms
 from torchvision.utils import save_image, make_grid
 import time
-from models_zi2zi.model import chk_mkdir
-from util.html_zi2zi import HTML
+from modelsZi2zi.model import chk_mkdir
+from util.htmlZi2zi import HTML
 
 # writer_dict = {
 #         '智永': 0, ' 隸書-趙之謙': 1, '張即之': 2, '張猛龍碑': 3, '柳公權': 4, '標楷體-手寫': 5, '歐陽詢-九成宮': 6,
