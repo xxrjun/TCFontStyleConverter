@@ -2,7 +2,7 @@ import argparse
 import os
 from util import util
 import torch
-import models
+import models.pix2pix_cyclegan
 import data
 
 
