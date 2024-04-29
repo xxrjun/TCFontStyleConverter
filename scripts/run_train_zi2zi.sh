@@ -1,5 +1,5 @@
 epoch=50
-batch_size=64
+batch_size=16
 sample_steps=200
 checkpoint_steps=500
 
