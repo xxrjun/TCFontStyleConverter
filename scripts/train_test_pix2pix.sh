@@ -6,7 +6,7 @@ check_status() {
   fi
 }
 
-name=pix2pix
+name=fontA2B
 model=pix2pix
 
 # 進行模型訓練
