@@ -11,7 +11,7 @@ model=cycle_gan
 
 # 進行模型訓練
 echo "Starting model training..."
-python ./train.py --dataroot ./datasets/FontHandWriting_Dataset_CycleGAN \
+python ./train.py --dataroot ./datasets/Dataset_CycleGAN \
                   --name $name \
                   --model $model \
                   --input_nc 1 \
@@ -30,7 +30,7 @@ fi
 
 # 進行模型測試
 echo "Starting model testing..."
-python ./test.py --dataroot ./datasets/FontHandWriting_Dataset_CycleGAN \
+python ./test.py --dataroot ./datasets/Dataset_CycleGAN \
                   --name $name \
                   --model $model \
                   --input_nc 1 \

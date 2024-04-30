@@ -11,7 +11,7 @@ model=pix2pix
 
 # 進行模型訓練
 echo "Starting model training..."
-python ./train.py --dataroot ./datasets/FontHandWriting_Dataset_pix2pix \
+python ./train.py --dataroot ./datasets/Dataset_Pix2pix \
                   --name $name \
                   --model $model \
                   --direction AtoB \
@@ -33,7 +33,7 @@ fi
 
 # 進行模型測試
 echo "Starting model testing..."
-python ./test.py --dataroot ./datasets/FontHandWriting_Dataset_pix2pix \
+python ./test.py --dataroot ./datasets/Dataset_Pix2pix \
                   --name $name \
                   --model $model \
                   --dataset_mode unaligned \
