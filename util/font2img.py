@@ -81,21 +81,36 @@ def draw_single_char(ch, font, canvas_size, x_offset=0, y_offset=0):
     return img
 
 
-def draw_font2font_example(ch, src_font, dst_font, canvas_size, x_offset, y_offset, filter_hashes):
+def draw_font2font_example(ch, src_font, dst_font, canvas_size, x_offset, y_offset, filter_hashes, for_cycleGAN=False):
     dst_img = draw_single_char(ch, dst_font, canvas_size, x_offset, y_offset)
     if dst_img is None:
-        return None
+        if for_cycleGAN:
+            return None, None
+        else:
+            return None
     # check the filter example in the hashes or not
     dst_hash = hash(dst_img.tobytes())
     if dst_hash in filter_hashes:
-        return None
+        if for_cycleGAN:
+            return None, None
+        else:
+            return None
     src_img = draw_single_char(ch, src_font, canvas_size, x_offset, y_offset)
-    example_img = Image.new("RGB", (canvas_size * 2, canvas_size), (255, 255, 255))
-    example_img.paste(dst_img, (0, 0))
-    example_img.paste(src_img, (canvas_size, 0))
-    # convert to gray img
-    example_img = example_img.convert('L')
-    return example_img
+    if not for_cycleGAN:
+        example_img = Image.new("RGB", (canvas_size * 2, canvas_size), (255, 255, 255))
+        example_img.paste(dst_img, (0, 0))
+        example_img.paste(src_img, (canvas_size, 0))
+        # convert to gray img
+        example_img = example_img.convert('L')
+        return example_img
+    else:
+        example_src_img = Image.new("RGB", (canvas_size, canvas_size), (255, 255, 255))
+        example_src_img.paste(src_img, (0, 0))
+        example_src_img = example_src_img.convert('L')
+        example_dst_img = Image.new("RGB", (canvas_size, canvas_size), (255, 255, 255))
+        example_dst_img.paste(dst_img, (0, 0))
+        example_dst_img = example_dst_img.convert('L')
+        return example_src_img, example_dst_img
 
 
 def draw_font2imgs_example(ch, src_font, dst_img, canvas_size, x_offset, y_offset):
@@ -139,7 +154,8 @@ def filter_recurring_hash(charset, font, canvas_size, x_offset, y_offset):
 
 
 def font2font(src, dst, charset, char_size, canvas_size,
-             x_offset, y_offset, sample_count, sample_dir, label=0, filter_by_hash=True):
+             x_offset, y_offset, sample_count, sample_dir,
+             label = 0, filter_by_hash = True, for_cycleGAN = False):
     src_font = ImageFont.truetype(src, size=char_size)
     dst_font = ImageFont.truetype(dst, size=char_size)
 
@@ -149,19 +165,28 @@ def font2font(src, dst, charset, char_size, canvas_size,
         print("filter hashes -> %s" % (",".join([str(h) for h in filter_hashes])))
 
     count = 0
-
     for c in charset:
         if count == sample_count:
             break
-        e = draw_font2font_example(c, src_font, dst_font, canvas_size, x_offset, y_offset, filter_hashes)
-        if e is None:
-            continue
-        if e:
-            e.save(os.path.join(sample_dir, "%d_%04d.jpg" % (label, count)))
+        try:
+            if not for_cycleGAN:
+                e = draw_font2font_example(c, src_font, dst_font, canvas_size, x_offset, y_offset, filter_hashes, for_cycleGAN)
+                if e is None:
+                    continue
+                if e:
+                    e.save(os.path.join(sample_dir, "%d_%04d.jpg" % (label, count)))
+            else:
+                e_src, e_dst = draw_font2font_example(c, src_font, dst_font, canvas_size, x_offset, y_offset, filter_hashes, for_cycleGAN)
+                if e_src is None or e_dst is None:
+                    continue
+                if e_src and e_dst:
+                    e_src.save(os.path.join(sample_dir, "trainA", "%c.jpg" % c))
+                    e_dst.save(os.path.join(sample_dir, "trainB", "%c.jpg" % c))
             count += 1
-            if count % 500 == 0:
-                print("processed %d chars" % count)
-
+        except Exception as error:
+            print(f"Error processing character {c} ({ord(c)}): {error}, skipping.")
+        if count % 500 == 0:
+            print("processed %d chars" % count)
 
 def font2imgs(src, dst, char_size, canvas_size,
               x_offset, y_offset, sample_count, sample_dir):
@@ -317,6 +342,8 @@ parser.add_argument('--dst_font', type=str, default=None, help='path of the targ
 parser.add_argument('--dst_imgs', type=str, default=None, help='path of the target imgs')
 
 parser.add_argument('--filter', default=False, action='store_true', help='filter recurring characters')
+parser.add_argument('--for_cycleGAN', default=False, action='store_true',
+                    help='generate for CycleGAN, only valid in font2font mode.')
 parser.add_argument('--charset', type=str, default='CN',
                     help='charset, can be either: CN, JP, KR or a one line file. ONLY VALID IN font2font mode.')
 parser.add_argument('--shuffle', default=False, action='store_true', help='shuffle a charset before processings')
@@ -333,6 +360,9 @@ args = parser.parse_args()
 if __name__ == "__main__":
     if not os.path.isdir(args.sample_dir):
         os.mkdir(args.sample_dir)
+    if args.for_cycleGAN:
+        os.mkdir(os.path.join(args.sample_dir, "trainA"))
+        os.mkdir(os.path.join(args.sample_dir, "trainB"))
     if args.mode == 'font2font':
         if args.src_font is None or args.dst_font is None:
             raise ValueError('src_font and dst_font are required.')
@@ -344,7 +374,7 @@ if __name__ == "__main__":
             np.random.shuffle(charset)
         font2font(args.src_font, args.dst_font, charset, args.char_size,
                   args.canvas_size, args.x_offset, args.y_offset,
-                  args.sample_count, args.sample_dir, args.label, args.filter)
+                  args.sample_count, args.sample_dir, args.label, args.filter, args.for_cycleGAN)
     elif args.mode == 'font2imgs':
         if args.src_font is None or args.dst_imgs is None:
             raise ValueError('src_font and dst_imgs are required.')

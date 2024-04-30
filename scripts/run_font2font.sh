@@ -3,7 +3,7 @@ src_font=$2
 dst_font=$3
 label=$4
 
-python font2img.py --src_font ./datasets/charset/src/$src_font.ttf \
+python ./util/font2img.py --src_font ./datasets/charset/src/$src_font.ttf \
                    --dst_font ./datasets/charset/dst/$dst_font.ttf \
                    --charset CN \
                    --sample_count $sample_count \
