@@ -6,7 +6,7 @@ check_status() {
   fi
 }
 
-name=fontA2B
+name=cycle_gan
 model=cycle_gan
 
 # 進行模型訓練

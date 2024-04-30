@@ -1,4 +1,4 @@
-sample_count=1000
+sample_count=1250
 src_font=PMingLiU-02
 dst_font=DFHsiu-W3-WIN-BF-01
 split_ratio=0.2

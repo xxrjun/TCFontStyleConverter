@@ -77,7 +77,7 @@ gdown --id <access_token>
 Run the following shell script to download **Paired Dataset for pix2pix**:
 
 ```bash
-./scripts/download_aligned_font_dataset.sh
+./scripts/download_paired_font_dataset.sh
 ```
 
 Run the following shell script to download **Unpaired Dataset for cycleGAN**:
@@ -199,6 +199,17 @@ Run the following shell script to **train and test CycleGAN**:
 ```bash
 ./scripts/train_test_cycleGAN.sh
 ```
+
+*Be sure to modify all the parameters which are needed in the shell script before running the script.*
+
+
+For detailed information, you can run the following command to see the help message:
+
+```bash
+python train.py --help
+python test.py --help
+```
+
 ### Zi2zi
 Before training the model, you need to open the `run_train_zi2zi.sh` file and modify the following parameters:
 - `epoch`: the number of epochs
