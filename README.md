@@ -85,6 +85,54 @@ Run the following shell script to download **Unpaired Dataset for cycleGAN**:
 ```bash
 ./scripts/download_font_dataset.sh
 ```
+
+Another way to generate the dataset is to use the given fonts and convert them to images. The fonts should be in `.ttf` format.
+
+First, download tons of fonts as you please and put **one** source font in `./datasets/charset/src` and **put any number less than 40 of** target fonts in `./datasets/charset/dst`. The fonts should be in `.ttf` format.
+```bash
+datasets
+  └─ charset
+      ├─src         (n = 1)
+      │  └─src.ttf
+      └─dst         (n <= 40)
+        ├─dst1.ttf
+        ├─dst2.ttf
+        └─dst?.ttf
+```
+
+Then run the following command to convert the source font and target fonts to images for **pix2pix**:
+
+```bash
+bash ./scripts/generate_dataset_Pix2pix.sh
+```
+
+Run the following command to convert the source font and target fonts to images for **CycleGAN**:
+
+```bash
+bash ./scripts/generate_dataset_CycleGAN.sh
+```
+The dataset will be saved in the `./datasets/Dataset_CycleGAN` or `./datasets/Dataset_Pix2pix` directory with the following structure:
+
+```bash
+datasets
+  ├─Dataset_CycleGAN
+  │  ├─trainA
+  │  ├─trainB
+  │  ├─testA
+  │  └─testB
+  └─Dataset_Pix2pix
+     ├─trainA
+     ├─trainB
+     ├─testA
+     └─testB
+```
+
+You can open these two shell scripts and modify the following parameters:
+- `sample_number`: the number of samples to generate
+- `src_font`: the name of the source font
+- `dst_font`: the name of the target font
+- `split_ratio`: the ratio of the training set to the validation set
+
 ### Zi2Zi
 Download tons of fonts as you please and put **one** source font in `./datasets/charset/src` and **put any number less than 40 of** target fonts in `./datasets/charset/dst`. The fonts should be in `.ttf` format.
 ```bash
