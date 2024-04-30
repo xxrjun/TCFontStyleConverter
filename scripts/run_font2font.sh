@@ -8,7 +8,7 @@ python font2img.py --src_font ./datasets/charset/src/$src_font.ttf \
                    --charset CN \
                    --sample_count $sample_count \
                    --sample_dir ./datasets/examples \
-                   --label 0 \
+                   --label $label \
                    --filter \
                    --shuffle \
                    --mode font2font
