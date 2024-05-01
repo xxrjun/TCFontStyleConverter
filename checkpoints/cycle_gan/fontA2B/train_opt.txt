@@ -1,10 +1,10 @@
 ----------------- Options ---------------
                batch_size: 1                             
                     beta1: 0.5                           
-          checkpoints_dir: ../checkpoints/cycle_gan      	[default: ./checkpoints]
+          checkpoints_dir: ./checkpoints/cycle_gan       	[default: ./checkpoints]
            continue_train: False                         
                 crop_size: 256                           
-                 dataroot: ../datasets/FontHandWriting_Dataset_CycleGAN	[default: None]
+                 dataroot: ./datasets/Dataset_CycleGAN   	[default: None]
              dataset_mode: unaligned                     
                 direction: AtoB                          
               display_env: main                          
