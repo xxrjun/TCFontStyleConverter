@@ -74,7 +74,7 @@ class DatasetFromObj(data.Dataset):
                 img_A = img_A.crop((shift_x, shift_y, shift_x + w, shift_y + h))
                 img_B = img_B.crop((shift_x, shift_y, shift_x + w, shift_y + h))
 
-                if self.rotate and random.random() > 0.9:
+                if self.rotate and random.random() > 0.8:
                     angle_list = [0, 90, 180, 270]
                     random_angle = random.choice(angle_list)
                     if self.input_nc == 3:
@@ -89,10 +89,10 @@ class DatasetFromObj(data.Dataset):
                     sigma = random.choice(sigma_list)
                     img_A = img_A.filter(ImageFilter.GaussianBlur(radius=sigma))
                     img_B = img_B.filter(ImageFilter.GaussianBlur(radius=sigma))
-                if self.flip and random.random() > 0.9:
+                if self.flip and random.random() > 0.8:
                     img_A = img_A.transpose(Image.FLIP_LEFT_RIGHT)
                     img_B = img_B.transpose(Image.FLIP_LEFT_RIGHT)
-                elif self.flip and random.random() < 0.1:
+                elif self.flip and random.random() < 0.2:
                     img_A = img_A.transpose(Image.FLIP_TOP_BOTTOM)
                     img_B = img_B.transpose(Image.FLIP_TOP_BOTTOM)
 
