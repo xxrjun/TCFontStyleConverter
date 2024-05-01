@@ -104,6 +104,7 @@ def main():
             bold = 'bold' in args.augment,
             rotate = 'rotate' in args.augment,
             blur = 'blur' in args.augment,
+            flip = 'flip' in args.augment,
         )
         total_batches = math.ceil(len(train_dataset) / args.batch_size)
         dataloader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
