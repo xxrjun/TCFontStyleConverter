@@ -14,6 +14,7 @@ dependencies:
   - scipy
   - imageio
   - matplotlib
+  - pip
   - pip:
     - pillow
     - opencv-python
