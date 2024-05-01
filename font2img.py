@@ -77,7 +77,7 @@ def draw_single_char(ch, font, canvas_size, x_offset=0, y_offset=0):
     # img = nn.ZeroPad2d(m)(img) #直接填0
     img = img.squeeze(0)  # 去轴
     img = transforms.ToPILImage()(img)
-    img = img.resize((canvas_size, canvas_size), Image.Resampling.LANCZOS)
+    img = img.resize((int(canvas_size * 0.8), int(canvas_size * 0.8)), Image.Resampling.LANCZOS)
     return img
 
 
@@ -98,17 +98,17 @@ def draw_font2font_example(ch, src_font, dst_font, canvas_size, x_offset, y_offs
     src_img = draw_single_char(ch, src_font, canvas_size, x_offset, y_offset)
     if not for_cycleGAN:
         example_img = Image.new("RGB", (canvas_size * 2, canvas_size), (255, 255, 255))
-        example_img.paste(dst_img, (0, 0))
-        example_img.paste(src_img, (canvas_size, 0))
+        example_img.paste(dst_img, (int(0.1 * canvas_size), int(0.1 * canvas_size)))
+        example_img.paste(src_img, (int(1.1 * canvas_size), int(0.1 * canvas_size)))
         # convert to gray img
         example_img = example_img.convert('L')
         return example_img
     else:
         example_src_img = Image.new("RGB", (canvas_size, canvas_size), (255, 255, 255))
-        example_src_img.paste(src_img, (0, 0))
+        example_src_img.paste(src_img, (int(0.1 * canvas_size), int(0.1 * canvas_size)))
         example_src_img = example_src_img.convert('L')
         example_dst_img = Image.new("RGB", (canvas_size, canvas_size), (255, 255, 255))
-        example_dst_img.paste(dst_img, (0, 0))
+        example_dst_img.paste(dst_img, (int(0.1 * canvas_size), int(0.1 * canvas_size)))
         example_dst_img = example_dst_img.convert('L')
         return example_src_img, example_dst_img
 

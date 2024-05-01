@@ -18,8 +18,8 @@ python ./font2img.py --src_font ./datasets/charset/src/$src_font.ttf \
                    --sample_dir ./datasets/Dataset_CycleGAN \
                    --filter \
                    --shuffle \
-                   --canvas_size 64 \
-                   --char_size 64 \
+                   --canvas_size 256 \
+                   --char_size 256 \
                    --mode font2font \
                    --for_cycleGAN
 
