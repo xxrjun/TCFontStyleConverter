@@ -10,5 +10,6 @@ python trainZi2zi.py \
 --epoch $epoch \
 --batch_size $batch_size \
 --sample_steps $sample_steps \
+--augment bold rotate blur flip \
 --checkpoint_steps $checkpoint_steps \
 --input_nc 1 \
