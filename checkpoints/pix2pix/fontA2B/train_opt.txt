@@ -1,10 +1,10 @@
 ----------------- Options ---------------
                batch_size: 1                             
                     beta1: 0.5                           
-          checkpoints_dir: ../checkpoints/pix2pix        	[default: ./checkpoints]
+          checkpoints_dir: ./checkpoints/pix2pix         	[default: ./checkpoints]
            continue_train: False                         
                 crop_size: 256                           
-                 dataroot: ../datasets/FontHandWriting_Dataset_pix2pix	[default: None]
+                 dataroot: ./datasets/Dataset_Pix2pix    	[default: None]
              dataset_mode: unaligned                     	[default: aligned]
                 direction: AtoB                          
               display_env: main                          

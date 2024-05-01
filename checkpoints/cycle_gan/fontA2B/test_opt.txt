@@ -1,9 +1,9 @@
 ----------------- Options ---------------
              aspect_ratio: 1.0                           
                batch_size: 1                             
-          checkpoints_dir: ../checkpoints/cycle_gan      	[default: ./checkpoints]
+          checkpoints_dir: ./checkpoints/cycle_gan       	[default: ./checkpoints]
                 crop_size: 256                           
-                 dataroot: ../datasets/FontHandWriting_Dataset_CycleGAN	[default: None]
+                 dataroot: ./datasets/Dataset_CycleGAN   	[default: None]
              dataset_mode: unaligned                     
                 direction: AtoB                          
           display_winsize: 256                           
@@ -32,7 +32,7 @@
                 output_nc: 1                             	[default: 3]
                     phase: test                          
                preprocess: resize_and_crop               
-              results_dir: ../results/cycle_gan          	[default: ./results/]
+              results_dir: ./results/cycle_gan           	[default: ./results/]
            serial_batches: False                         
                    suffix:                               
                 use_wandb: False                         
