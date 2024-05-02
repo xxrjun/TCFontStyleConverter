@@ -253,12 +253,13 @@ experiment
 Zi2zi has two ways to test the model. The first way is to test the model with the validation set. Run the following command to test the model with the validation set:
 
 ```bash
-bash ./scripts/run_test_zi2zi.sh
+bash ./scripts/run_infer.sh <resume>
 ```
+`resume`: which step of checkpoint to generate the image
 The second way is to test the model with the source font that you can type any Chinese characters you want to convert to the target font. Run the following command to test the model with the source font:
 
 ```bash
-bash ./scripts/run_test_zi2zi.sh <src_txt> <resume> <label>
+bash ./scripts/run_infer_run_txt.sh <src_txt> <resume> <label>
 ```
 - `src_txt`: type any Chinese characters you want to convert to the target font
 - `resume`: which step of checkpoint to generate the image
